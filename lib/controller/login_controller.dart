@@ -1,13 +1,11 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_tutorial_todo/api/api_controller.dart';
 import 'package:get/get.dart';
 
 class LoginController extends GetxController {
-  ApiController ac = Get.put(ApiController());
   final isOnline = true.obs;
-  final formKey = GlobalKey<FormState>().obs;
+  final formKey = new GlobalKey<FormState>().obs;
   final uname = ''.obs;
   final pass = ''.obs;
   final pass2 = ''.obs;

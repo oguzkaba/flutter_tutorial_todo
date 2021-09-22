@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_tutorial_todo/api/api_controller.dart';
 import 'package:flutter_tutorial_todo/api/services.dart';
 import 'package:flutter_tutorial_todo/controller/login_controller.dart';
 import 'package:flutter_tutorial_todo/model/globals_model.dart';
@@ -7,7 +8,7 @@ import 'package:flutter_tutorial_todo/view/home_screen.dart';
 import 'package:flutter_tutorial_todo/view/login_screen.dart';
 import 'package:flutter_tutorial_todo/view/signup_screen.dart';
 import 'package:flutter_tutorial_todo/view/widget/textfield_widget.dart';
-import 'package:get/route_manager.dart';
+import 'package:get/get.dart';
 
 class BoxContainer extends StatelessWidget {
   final String? route;
@@ -16,7 +17,8 @@ class BoxContainer extends StatelessWidget {
     this.route,
     Key? key,
   }) : super(key: key);
-  final LoginController lc = LoginController();
+  final LoginController lc = Get.put(LoginController());
+  //final ApiController apic = Get.put(ApiController());
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -140,11 +142,14 @@ class BoxContainer extends StatelessWidget {
           SizedBox(height: 20),
           ElevatedButton(
               onPressed: () async {
-                if (lc.formKey.value.currentState!.validate()) {
-                  await RemoteServices.createUser(
-                      lc.uname.value, lc.email.value, lc.pass.value);
-                  Get.to(() => HomePage());
-                }
+                // if (lc.formKey2.value.currentState!.validate()) {
+                //   if (await RemoteServices.createUser(
+                //       lc.uname.value, lc.email.value, lc.pass.value)) {
+                //     lc.formKey.value = new GlobalKey();
+                //     //apic.getData();
+                //     Get.to(() => HomePage());
+                //   }
+                // }
               },
               child: Text(
                 'Sign Up',

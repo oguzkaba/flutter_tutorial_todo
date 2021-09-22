@@ -7,12 +7,12 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    ApiController apiC = Get.put(ApiController());
+    ApiController apic = Get.put(ApiController());
 
     return Scaffold(
       appBar: AppBar(title: Text('TODO.'), centerTitle: true),
       body: Obx(() =>
-          apiC.isLoading.value ? mainEmptyScreen() : mainFillScreen(apiC)),
+          apic.isLoading.value ? mainEmptyScreen() : mainFillScreen(apic)),
     );
   }
 
