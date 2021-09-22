@@ -23,17 +23,7 @@ class HomePage extends StatelessWidget {
           return Card(
               child: Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: ListTile(
-                    title: Text("Username: " + apiC.list[index].name.toString(),
-                        style: TextStyle(fontSize: 20)),
-                    leading: Text(
-                        "Level: " + apiC.list[index].levelsId.toString(),
-                        style: TextStyle(fontSize: 20)),
-                    trailing: Text(
-                        "Personnel No: " +
-                            apiC.list[index].personnelId.toString(),
-                        style: TextStyle(fontSize: 20)),
-                  )));
+                  child: Text(apiC.list[index].name.toString())));
         });
   }
 

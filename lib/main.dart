@@ -16,9 +16,7 @@ class MyApp extends StatelessWidget {
     ]);
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-          fontFamily: "Poppins", primaryColor: GlobalValues.baby_powder),
-      title: 'Flutter Demo',
+      theme: ThemeData(fontFamily: "Poppins"),
       home: LoginScreen(),
     );
   }

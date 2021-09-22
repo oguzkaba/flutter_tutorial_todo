@@ -11,7 +11,7 @@ class LoginScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        backgroundColor: GlobalValues.baby_powder,
+        // backgroundColor: GlobalValues.baby_powder,
         bottomSheet: SingleChildScrollView(
           physics: NeverScrollableScrollPhysics(),
           child: IntrinsicHeight(

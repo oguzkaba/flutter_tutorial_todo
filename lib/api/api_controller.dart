@@ -16,7 +16,7 @@ class ApiController extends GetxController {
   Future<void> getData() async {
     try {
       isLoading(true);
-      list = await RemoteServices.fetchData();
+      list = await RemoteServices.getUsers();
     } finally {
       isLoading(false);
     }
