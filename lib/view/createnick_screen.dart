@@ -1,0 +1,96 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_tutorial_todo/controller/companent_controller.dart';
+import 'package:flutter_tutorial_todo/controller/login_controller.dart';
+import 'package:flutter_tutorial_todo/model/globals_model.dart';
+import 'package:flutter_tutorial_todo/view/home_screen.dart';
+import 'package:flutter_tutorial_todo/view/widget/textfield_widget.dart';
+import 'package:get/get.dart';
+
+class CreateNick extends StatelessWidget {
+  const CreateNick({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    LoginController lc = Get.put(LoginController());
+    CompanentController cc = Get.put(CompanentController());
+
+    return SafeArea(
+      child: Scaffold(
+        body: Column(
+          children: [
+            Expanded(
+              flex: 2,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisSize: MainAxisSize.max,
+                children: [
+                  Text('Todo.',
+                      style: TextStyle(
+                          color: GlobalValues.middle_blue,
+                          fontSize: 75,
+                          fontWeight: FontWeight.bold)),
+                  SizedBox(
+                      width: 200,
+                      child:
+                          Divider(color: GlobalValues.middle_blue, height: 5)),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 100),
+                    child: Text('Create Your Cool Nickname',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                            color: GlobalValues.middle_blue,
+                            fontSize: 25,
+                            fontWeight: FontWeight.bold)),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 48.0),
+                    child: TextField(
+                        onChanged: (value) => cc.nickname.value = value,
+                        style: TextStyle(
+                            fontSize: 20,
+                            color: Colors.lightBlue[900],
+                            fontWeight: FontWeight.bold),
+                        decoration: InputDecoration(
+                            focusedBorder: UnderlineInputBorder(
+                                borderSide: const BorderSide(
+                                    color: GlobalValues.middle_blue, width: 2)),
+                            enabledBorder: UnderlineInputBorder(
+                                borderSide: const BorderSide(
+                                    color: GlobalValues.middle_blue)),
+                            hintStyle: TextStyle(
+                              color: GlobalValues.middle_blue,
+                            ))),
+                  )
+                ],
+              ),
+            ),
+            Expanded(
+              flex: 3,
+              child: Padding(
+                padding: const EdgeInsets.all(30),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  mainAxisSize: MainAxisSize.max,
+                  children: [
+                    Obx(() => cc.nickname.value.length < 6
+                        ? Text('Skip',
+                            textAlign: TextAlign.right,
+                            style: TextStyle(
+                                color: GlobalValues.middle_blue,
+                                fontSize: 30,
+                                fontWeight: FontWeight.bold))
+                        : IconButton(
+                            onPressed: () => Get.off(() => HomePage()),
+                            icon: Icon(Icons.arrow_forward_ios,
+                                color: GlobalValues.middle_blue)))
+                  ],
+                ),
+              ),
+            )
+          ],
+        ),
+      ),
+    );
+  }
+}
