@@ -12,7 +12,7 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     ApiController apic = Get.put(ApiController());
-    CompanentController cc = Get.put(CompanentController());
+    CompanentController cc = Get.find();
 
     return SafeArea(
       child: Scaffold(
@@ -30,14 +30,14 @@ class HomePage extends StatelessWidget {
                     fontWeight: FontWeight.bold)),
             Divider(color: GlobalValues.middle_blue, height: 5),
             Padding(
-              padding: const EdgeInsets.all(8.0),
+              padding: const EdgeInsets.all(15),
               child: Align(
                 alignment: Alignment.centerLeft,
-                child: Text('Hey ${cc.nickname.value},',
+                child: Obx(() => Text('Hey ${cc.nickname.value},',
                     style: TextStyle(
                         color: GlobalValues.marigold,
                         fontSize: 18,
-                        fontWeight: FontWeight.bold)),
+                        fontWeight: FontWeight.bold))),
               ),
             ),
             Obx(() => apic.isLoading.value
@@ -60,34 +60,71 @@ class HomePage extends StatelessWidget {
                   color: ac.listTodos[index].completed == 0
                       ? Colors.white
                       : GlobalValues.salmon_pink,
-                  child: ListTile(
-                    leading: Checkbox(
-                        activeColor: GlobalValues.baby_powder,
-                        checkColor: GlobalValues.marigold,
-                        onChanged: (bool? value) =>
-                            null, // Update Eklenecek....
-                        value:
-                            ac.listTodos[index].completed == 0 ? false : true),
-                    selectedTileColor: GlobalValues.marigold,
-                    subtitle: Text(ac.listTodos[index].content.toString(),
-                        style: TextStyle(
-                            decoration: ac.listTodos[index].completed == 0
-                                ? TextDecoration.none
-                                : TextDecoration.lineThrough)),
-                    title: Text(ac.listTodos[index].title.toString(),
-                        style: TextStyle(
-                            color: ac.listTodos[index].completed == 0
-                                ? Colors.lightBlue[900]
-                                : Colors.white,
-                            fontWeight: FontWeight.bold,
-                            decoration: ac.listTodos[index].completed == 0
-                                ? TextDecoration.none
-                                : TextDecoration.lineThrough)),
-                    trailing:
-                        IconButton(onPressed: null, icon: Icon(Icons.alarm)),
+                  child: Dismissible(
+                    direction: DismissDirection.endToStart,
+                    confirmDismiss: (DismissDirection direction) async =>
+                        _confirmDismiss(context),
+                    key: UniqueKey(),
+                    onDismissed: null, //Delete eklenecek
+                    background: Container(
+                      color: Colors.red,
+                      child: Icon(
+                        Icons.delete,
+                        color: Colors.white,
+                      ),
+                    ),
+                    child: ListTile(
+                      leading: Checkbox(
+                          activeColor: GlobalValues.baby_powder,
+                          checkColor: GlobalValues.marigold,
+                          onChanged: (bool? value) =>
+                              null, // Update Eklenecek....
+                          value: ac.listTodos[index].completed == 0
+                              ? false
+                              : true),
+                      selectedTileColor: GlobalValues.marigold,
+                      subtitle: Text(ac.listTodos[index].content.toString(),
+                          style: TextStyle(
+                              decoration: ac.listTodos[index].completed == 0
+                                  ? TextDecoration.none
+                                  : TextDecoration.lineThrough)),
+                      title: Text(ac.listTodos[index].title.toString(),
+                          style: TextStyle(
+                              color: ac.listTodos[index].completed == 0
+                                  ? Colors.lightBlue[900]
+                                  : Colors.white,
+                              fontWeight: FontWeight.bold,
+                              decoration: ac.listTodos[index].completed == 0
+                                  ? TextDecoration.none
+                                  : TextDecoration.lineThrough)),
+                      trailing:
+                          IconButton(onPressed: null, icon: Icon(Icons.alarm)),
+                    ),
                   ));
             }),
       ),
+    );
+  }
+
+  Future<bool?> _confirmDismiss(BuildContext context) async {
+    return await showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text("Delete Confirmation"),
+          content: const Text("Are you sure you want to delete this item?"),
+          actions: <Widget>[
+            TextButton(
+              onPressed: () => Get.back(result: true),
+              child: const Text("Delete"),
+            ),
+            TextButton(
+              onPressed: () => Get.back(result: false),
+              child: const Text("Cancel"),
+            ),
+          ],
+        );
+      },
     );
   }
 

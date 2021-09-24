@@ -62,4 +62,26 @@ class RemoteServices {
     } else
       throw ("İstek durumu başarısız oldu: ${response.statusCode}");
   }
+
+  static Future<bool> addTodo(title, content) async {
+    final dynamic date = DateTime.now();
+    Map data = {
+      'title': title,
+      'content': content,
+      'recordingDate': date.toString(),
+      'completed': 0
+    };
+    final http.Response response =
+        await http.post(Uri.parse(BASE_URL + '/Todo'),
+            headers: {
+              "xc-token": TOKEN_VALUE,
+              'Content-Type': 'application/json; charset=UTF-8',
+            },
+            body: jsonEncode(data));
+
+    if (response.statusCode == 200) {
+      return true;
+    } else
+      throw ("İstek durumu başarısız oldu: ${response.statusCode}+ ${response.body}");
+  }
 }

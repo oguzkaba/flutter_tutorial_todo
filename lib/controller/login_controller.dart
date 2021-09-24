@@ -17,18 +17,10 @@ class LoginController extends GetxController {
       return false;
     }
   }
-// linkText.value = value;
-//     isOnline.value = await hasInternetConnection();
-//     //validURL.value = isURL(linkText.value, requireTld: true);
-
-//     if (validURL.value && isOnline.value) {
-//       //await ac.getData(value).whenComplete(() => lc.addData(ac.link.value));
-//       hintColor.value = Colors.grey;
-//     }
 
   String? validateInput(String? value) {
     if (value!.isEmpty) {
-      return 'Please fill username';
+      return 'Please fill area';
     } else if (value.length < 6) {
       return 'Username must be 6 length character';
     } else {

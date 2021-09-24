@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_tutorial_todo/controller/companent_controller.dart';
-import 'package:flutter_tutorial_todo/controller/login_controller.dart';
 import 'package:flutter_tutorial_todo/model/globals_model.dart';
 import 'package:flutter_tutorial_todo/view/home_screen.dart';
-import 'package:flutter_tutorial_todo/view/widget/textfield_widget.dart';
 import 'package:get/get.dart';
 
 class CreateNick extends StatelessWidget {
@@ -11,9 +9,7 @@ class CreateNick extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    LoginController lc = Get.put(LoginController());
     CompanentController cc = Get.put(CompanentController());
-
     return SafeArea(
       child: Scaffold(
         body: Column(
@@ -45,7 +41,7 @@ class CreateNick extends StatelessWidget {
                   ),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 48.0),
-                    child: TextField(
+                    child: TextFormField(
                         onChanged: (value) => cc.nickname.value = value,
                         style: TextStyle(
                             fontSize: 20,
@@ -73,7 +69,7 @@ class CreateNick extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.end,
                   mainAxisSize: MainAxisSize.max,
                   children: [
-                    Obx(() => cc.nickname.value.length < 6
+                    Obx(() => cc.nickname.value.length < 4
                         ? Text('Skip',
                             textAlign: TextAlign.right,
                             style: TextStyle(

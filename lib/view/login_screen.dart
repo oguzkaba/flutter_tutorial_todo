@@ -4,8 +4,8 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_tutorial_todo/api/api_controller.dart';
 import 'package:flutter_tutorial_todo/controller/login_controller.dart';
 import 'package:flutter_tutorial_todo/model/globals_model.dart';
+import 'package:flutter_tutorial_todo/view/createnick_screen.dart';
 import 'package:flutter_tutorial_todo/view/forgot_screen.dart';
-import 'package:flutter_tutorial_todo/view/home_screen.dart';
 import 'package:flutter_tutorial_todo/view/signup_screen.dart';
 import 'package:flutter_tutorial_todo/view/widget/boxcontainer_widget.dart';
 import 'package:flutter_tutorial_todo/view/widget/textfield_widget.dart';
@@ -81,7 +81,7 @@ Widget? _loginWidget() {
               if (formKeyLogin.currentState!.validate()) {
                 await apic.getUsersData();
                 await apic.getTodosData();
-                Get.to(() => HomePage());
+                Get.to(() => CreateNick());
               }
             },
             child: Text(

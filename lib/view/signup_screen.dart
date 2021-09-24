@@ -3,7 +3,7 @@ import 'package:flutter_tutorial_todo/api/api_controller.dart';
 import 'package:flutter_tutorial_todo/api/services.dart';
 import 'package:flutter_tutorial_todo/controller/login_controller.dart';
 import 'package:flutter_tutorial_todo/model/globals_model.dart';
-import 'package:flutter_tutorial_todo/view/home_screen.dart';
+import 'package:flutter_tutorial_todo/view/createnick_screen.dart';
 import 'package:flutter_tutorial_todo/view/login_screen.dart';
 import 'package:flutter_tutorial_todo/view/widget/boxcontainer_widget.dart';
 import 'package:flutter_tutorial_todo/view/widget/textfield_widget.dart';
@@ -84,7 +84,7 @@ Widget? _signUpWidget() {
                 if (await RemoteServices.createUser(
                     lc.uname.value, lc.email.value, lc.pass.value)) {
                   await apic.getUsersData();
-                  Get.to(() => HomePage());
+                  Get.to(() => CreateNick());
                 }
               }
             },
