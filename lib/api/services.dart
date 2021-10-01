@@ -49,9 +49,9 @@ class RemoteServices {
       throw ("İstek durumu başarısız oldu: ${response.statusCode}+ ${response.body}");
   }
 
-  static Future<List<TodosModel>> getTodos() async {
+  static Future<List<TodosModel>> getTodos(int? limit, int? offset) async {
     final http.Response response = await http.get(
-      Uri.parse(BASE_URL + '/Todo'),
+      Uri.parse(BASE_URL + '/Todo?limit=$limit&offset=$offset'),
       headers: {
         "xc-token": TOKEN_VALUE,
       },

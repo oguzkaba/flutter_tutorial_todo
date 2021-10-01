@@ -8,11 +8,12 @@ class TextFieldWidget extends StatelessWidget {
   final bool? obsecured;
   final String? hintText;
   final IconData? icon;
+  final IconData? icon2;
   const TextFieldWidget({
     required this.onchange,
     required this.validator,
     required this.obsecured,
-    //required this.controller,
+    this.icon2,
     required this.hintText,
     this.icon,
     Key? key,
@@ -35,6 +36,7 @@ class TextFieldWidget extends StatelessWidget {
             enabledBorder: UnderlineInputBorder(
                 borderSide: const BorderSide(color: GlobalValues.baby_powder)),
             prefixIcon: Icon(icon, color: GlobalValues.baby_powder),
+            suffixIcon: Icon(icon2, color: GlobalValues.baby_powder),
             hintText: hintText,
             hintStyle: TextStyle(
               color: GlobalValues.baby_powder,

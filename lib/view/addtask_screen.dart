@@ -84,7 +84,7 @@ class AddTaskScreen extends StatelessWidget {
                         if (formKeyAdd.currentState!.validate()) {
                           if (await RemoteServices.addTodo(
                               cc.title.value, cc.content.value)) {
-                            await apic.getTodosData();
+                            await apic.getTodosData(10, 0);
                             Get.to(() => HomePage());
                           }
                         }

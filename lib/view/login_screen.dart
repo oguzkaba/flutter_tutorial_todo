@@ -68,7 +68,8 @@ Widget? _loginWidget() {
             validator: lc.validateInput,
             obsecured: true,
             hintText: 'Password',
-            icon: Icons.lock),
+            icon: Icons.lock,
+            icon2: Icons.visibility_off),
         Align(
           alignment: Alignment.centerRight,
           child: TextButton(
@@ -80,7 +81,7 @@ Widget? _loginWidget() {
             onPressed: () async {
               if (formKeyLogin.currentState!.validate()) {
                 await apic.getUsersData();
-                await apic.getTodosData();
+                //await apic.getTodosData(10, 0);
                 Get.to(() => CreateNick());
               }
             },

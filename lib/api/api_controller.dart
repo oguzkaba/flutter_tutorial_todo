@@ -11,7 +11,7 @@ class ApiController extends GetxController {
   @override
   void onInit() {
     getUsersData();
-    getTodosData();
+    getTodosData(10, 0);
     super.onInit();
   }
 
@@ -22,10 +22,9 @@ class ApiController extends GetxController {
     } finally {}
   }
 
-  Future<void> getTodosData() async {
-    listTodos.clear();
+  Future<void> getTodosData(int? limit, int? offset) async {
     try {
-      listTodos = await RemoteServices.getTodos();
+      listTodos += await RemoteServices.getTodos(limit!, offset!);
       isLoading(true);
     } finally {
       isLoading(false);

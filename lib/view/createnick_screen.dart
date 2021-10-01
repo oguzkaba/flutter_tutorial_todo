@@ -64,22 +64,29 @@ class CreateNick extends StatelessWidget {
             Expanded(
               flex: 3,
               child: Padding(
-                padding: const EdgeInsets.all(30),
+                padding: const EdgeInsets.all(70),
                 child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.end,
                   mainAxisAlignment: MainAxisAlignment.end,
                   mainAxisSize: MainAxisSize.max,
                   children: [
                     Obx(() => cc.nickname.value.length < 4
-                        ? Text('Skip',
-                            textAlign: TextAlign.right,
-                            style: TextStyle(
-                                color: GlobalValues.middle_blue,
-                                fontSize: 30,
-                                fontWeight: FontWeight.bold))
-                        : IconButton(
-                            onPressed: () => Get.off(() => HomePage()),
-                            icon: Icon(Icons.arrow_forward_ios,
-                                color: GlobalValues.middle_blue)))
+                        ? Align(
+                            alignment: Alignment.centerRight,
+                            child: Text('Skip',
+                                textAlign: TextAlign.right,
+                                style: TextStyle(
+                                    color: GlobalValues.middle_blue,
+                                    fontSize: 26,
+                                    fontWeight: FontWeight.bold)),
+                          )
+                        : Align(
+                            alignment: Alignment.centerRight,
+                            child: IconButton(
+                                onPressed: () => Get.off(() => HomePage()),
+                                icon: Icon(Icons.arrow_forward_ios,
+                                    size: 30, color: GlobalValues.middle_blue)),
+                          ))
                   ],
                 ),
               ),

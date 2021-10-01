@@ -43,6 +43,22 @@ class HomePage extends StatelessWidget {
             Obx(() => apic.isLoading.value
                 ? mainEmptyScreen()
                 : mainFillScreen(apic)),
+            Obx(() => apic.listTodos.length < 11
+                ? ElevatedButton(
+                    onPressed: () async => await apic.getTodosData(100, 10),
+                    child: Text(
+                      'Load More...',
+                      style: TextStyle(
+                          fontWeight: FontWeight.w900,
+                          color: GlobalValues.baby_powder,
+                          fontSize: 20),
+                    ),
+                    style: ElevatedButton.styleFrom(
+                        primary: GlobalValues.marigold,
+                        fixedSize: Size(Get.width * .4, 45),
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10))))
+                : Container())
           ],
         ),
       ),
@@ -74,14 +90,14 @@ class HomePage extends StatelessWidget {
                       ),
                     ),
                     child: ListTile(
-                      leading: Checkbox(
-                          activeColor: GlobalValues.baby_powder,
-                          checkColor: GlobalValues.marigold,
-                          onChanged: (bool? value) =>
-                              null, // Update Eklenecek....
-                          value: ac.listTodos[index].completed == 0
-                              ? false
-                              : true),
+                      // leading: Checkbox(
+                      //     activeColor: GlobalValues.baby_powder,
+                      //     checkColor: GlobalValues.marigold,
+                      //     onChanged: (bool? value) =>
+                      //         null, // Update Eklenecek....
+                      //     value: ac.listTodos[index].completed == 0
+                      //         ? false
+                      //         : true),
                       selectedTileColor: GlobalValues.marigold,
                       subtitle: Text(ac.listTodos[index].content.toString(),
                           style: TextStyle(
