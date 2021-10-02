@@ -29,6 +29,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  get:
+  http:   
 
 
   # The following adds the Cupertino Icons font to your application.
@@ -41,9 +43,7 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_svg_provider: 
-  get:
-  http:  
+ 
 
 assets:
   - assets/images/
